@@ -1,0 +1,21 @@
+# Render Blueprint: a free static site built from this repo.
+# Render reads this automatically (New → Blueprint), or copy the same
+# settings into a manual "Static Site": build `npm ci && npm run build`, publish `dist`.
+services:
+  - type: web
+    name: salt-and-crumb
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    pullRequestPreviewsEnabled: false
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+    headers:
+      # hashed JS/CSS can be cached forever; the HTML always revalidates
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /index.html
+        name: Cache-Control
+        value: no-cache

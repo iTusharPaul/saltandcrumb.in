@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.vite/
+
+# local editor / tool settings
+.claude/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# env files (none needed today, but never commit secrets)
+.env
+.env.*
+!.env.example
+
+npm-debug.log*
